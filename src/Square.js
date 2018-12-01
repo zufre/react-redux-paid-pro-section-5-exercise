@@ -10,11 +10,10 @@ export default class Square extends React.Component {
       x: 0,
       y: 0
     };
-    this.squareRef = null;
   }
   updateCoords(e) {
     const { clientX, clientY } = e;
-    const { top, left } = this.squareRef.getBoundingClientRect();
+    const { top, left } = this.squareElem.getBoundingClientRect();
     this.setState({
       x: clientX - left,
       y: clientY - top
@@ -37,7 +36,7 @@ export default class Square extends React.Component {
     return (
       <div className="SquareContainer">
         <div
-          ref={e => (this.squareRef = e)}
+          ref={e => (this.squareElem = e)}
           style={style}
           className="Square"
           onMouseMove={e => this.updateCoords(e)}
@@ -49,7 +48,6 @@ export default class Square extends React.Component {
     );
   }
 }
-
 Square.propTypes = {
   initialColor: PropTypes.string,
   size: PropTypes.number.isRequired
